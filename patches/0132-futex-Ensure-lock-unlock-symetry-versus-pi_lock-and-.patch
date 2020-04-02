@@ -31,10 +31,10 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 2 insertions(+)
 
 diff --git a/kernel/futex.c b/kernel/futex.c
-index 5ec49f862c53..60be4530c767 100644
+index c922e994f524..cde7ff6f9a48 100644
 --- a/kernel/futex.c
 +++ b/kernel/futex.c
-@@ -921,7 +921,9 @@ void exit_pi_state_list(struct task_struct *curr)
+@@ -938,7 +938,9 @@ void exit_pi_state_list(struct task_struct *curr)
  		if (head->next != next) {
  			/* retain curr->pi_lock for the loop invariant */
  			raw_spin_unlock(&pi_state->pi_mutex.wait_lock);

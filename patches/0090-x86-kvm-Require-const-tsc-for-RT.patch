@@ -14,7 +14,7 @@ Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
  1 file changed, 7 insertions(+)
 
 diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
-index ade694f94a49..2dfb7c81743e 100644
+index 2cb379e261c0..a94c1a01b894 100644
 --- a/arch/x86/kvm/x86.c
 +++ b/arch/x86/kvm/x86.c
 @@ -6873,6 +6873,13 @@ int kvm_arch_init(void *opaque)

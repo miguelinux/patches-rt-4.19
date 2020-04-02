@@ -67,10 +67,10 @@ index 10225a9135fb..dcde8ffe384c 100644
  		rcu_read_unlock();
  		goto retry;
 diff --git a/fs/inode.c b/fs/inode.c
-index 9c50521c9fe4..40114e8b6c7b 100644
+index c9eb5041ffae..e1fb0b743c96 100644
 --- a/fs/inode.c
 +++ b/fs/inode.c
-@@ -155,7 +155,7 @@ int inode_init_always(struct super_block *sb, struct inode *inode)
+@@ -156,7 +156,7 @@ int inode_init_always(struct super_block *sb, struct inode *inode)
  	inode->i_bdev = NULL;
  	inode->i_cdev = NULL;
  	inode->i_link = NULL;
@@ -80,10 +80,10 @@ index 9c50521c9fe4..40114e8b6c7b 100644
  	inode->dirtied_when = 0;
  
 diff --git a/include/linux/fs.h b/include/linux/fs.h
-index 92420009b9bc..9b2b707e9112 100644
+index 15b8e02880c3..d27634022105 100644
 --- a/include/linux/fs.h
 +++ b/include/linux/fs.h
-@@ -678,7 +678,7 @@ struct inode {
+@@ -679,7 +679,7 @@ struct inode {
  		struct block_device	*i_bdev;
  		struct cdev		*i_cdev;
  		char			*i_link;

@@ -97,7 +97,7 @@ index 6244345a5745..7ee10b7cc808 100644
  	if (!o->nodeid) {
  		/*
 diff --git a/fs/namei.c b/fs/namei.c
-index c00a7e1da4c0..742e7935f777 100644
+index 327844fedf3d..5114c8111807 100644
 --- a/fs/namei.c
 +++ b/fs/namei.c
 @@ -1646,7 +1646,7 @@ static struct dentry *__lookup_slow(const struct qstr *name,

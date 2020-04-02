@@ -12,7 +12,7 @@ Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
  1 file changed, 30 insertions(+), 15 deletions(-)
 
 diff --git a/kernel/workqueue.c b/kernel/workqueue.c
-index 544007905706..0efb8d25d940 100644
+index 29dc939dad4e..f34586370fcb 100644
 --- a/kernel/workqueue.c
 +++ b/kernel/workqueue.c
 @@ -49,6 +49,7 @@
@@ -78,7 +78,7 @@ index 544007905706..0efb8d25d940 100644
  
  	debug_work_activate(work);
  
-@@ -1484,14 +1495,14 @@ bool queue_work_on(int cpu, struct workqueue_struct *wq,
+@@ -1486,14 +1497,14 @@ bool queue_work_on(int cpu, struct workqueue_struct *wq,
  	bool ret = false;
  	unsigned long flags;
  
@@ -95,7 +95,7 @@ index 544007905706..0efb8d25d940 100644
  	return ret;
  }
  EXPORT_SYMBOL(queue_work_on);
-@@ -1500,8 +1511,11 @@ void delayed_work_timer_fn(struct timer_list *t)
+@@ -1502,8 +1513,11 @@ void delayed_work_timer_fn(struct timer_list *t)
  {
  	struct delayed_work *dwork = from_timer(dwork, t, timer);
  
@@ -107,7 +107,7 @@ index 544007905706..0efb8d25d940 100644
  }
  EXPORT_SYMBOL(delayed_work_timer_fn);
  
-@@ -1556,14 +1570,14 @@ bool queue_delayed_work_on(int cpu, struct workqueue_struct *wq,
+@@ -1558,14 +1572,14 @@ bool queue_delayed_work_on(int cpu, struct workqueue_struct *wq,
  	unsigned long flags;
  
  	/* read the comment in __queue_work() */
@@ -124,7 +124,7 @@ index 544007905706..0efb8d25d940 100644
  	return ret;
  }
  EXPORT_SYMBOL(queue_delayed_work_on);
-@@ -1598,7 +1612,7 @@ bool mod_delayed_work_on(int cpu, struct workqueue_struct *wq,
+@@ -1600,7 +1614,7 @@ bool mod_delayed_work_on(int cpu, struct workqueue_struct *wq,
  
  	if (likely(ret >= 0)) {
  		__queue_delayed_work(cpu, wq, dwork, delay);
@@ -133,7 +133,7 @@ index 544007905706..0efb8d25d940 100644
  	}
  
  	/* -ENOENT from try_to_grab_pending() becomes %true */
-@@ -1609,11 +1623,12 @@ EXPORT_SYMBOL_GPL(mod_delayed_work_on);
+@@ -1611,11 +1625,12 @@ EXPORT_SYMBOL_GPL(mod_delayed_work_on);
  static void rcu_work_rcufn(struct rcu_head *rcu)
  {
  	struct rcu_work *rwork = container_of(rcu, struct rcu_work, rcu);
@@ -148,7 +148,7 @@ index 544007905706..0efb8d25d940 100644
  }
  
  /**
-@@ -3008,7 +3023,7 @@ static bool __cancel_work_timer(struct work_struct *work, bool is_dwork)
+@@ -3010,7 +3025,7 @@ static bool __cancel_work_timer(struct work_struct *work, bool is_dwork)
  
  	/* tell other tasks trying to grab @work to back off */
  	mark_work_canceling(work);
@@ -157,7 +157,7 @@ index 544007905706..0efb8d25d940 100644
  
  	/*
  	 * This allows canceling during early boot.  We know that @work
-@@ -3069,10 +3084,10 @@ EXPORT_SYMBOL_GPL(cancel_work_sync);
+@@ -3071,10 +3086,10 @@ EXPORT_SYMBOL_GPL(cancel_work_sync);
   */
  bool flush_delayed_work(struct delayed_work *dwork)
  {
@@ -170,7 +170,7 @@ index 544007905706..0efb8d25d940 100644
  	return flush_work(&dwork->work);
  }
  EXPORT_SYMBOL(flush_delayed_work);
-@@ -3110,7 +3125,7 @@ static bool __cancel_work(struct work_struct *work, bool is_dwork)
+@@ -3112,7 +3127,7 @@ static bool __cancel_work(struct work_struct *work, bool is_dwork)
  		return false;
  
  	set_work_pool_and_clear_pending(work, get_work_pool_id(work));

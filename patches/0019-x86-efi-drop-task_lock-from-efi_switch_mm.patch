@@ -23,10 +23,10 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 4 insertions(+), 6 deletions(-)
 
 diff --git a/arch/x86/platform/efi/efi_64.c b/arch/x86/platform/efi/efi_64.c
-index 6db8f3598c80..c9ccaef8df57 100644
+index 2a9a703ef4a0..f104c9f2998d 100644
 --- a/arch/x86/platform/efi/efi_64.c
 +++ b/arch/x86/platform/efi/efi_64.c
-@@ -620,18 +620,16 @@ void __init efi_dump_pagetable(void)
+@@ -617,18 +617,16 @@ void __init efi_dump_pagetable(void)
  
  /*
   * Makes the calling thread switch to/from efi_mm context. Can be used

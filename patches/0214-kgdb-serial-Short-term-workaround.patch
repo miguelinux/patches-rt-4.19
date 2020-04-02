@@ -24,7 +24,7 @@ Jason.
  3 files changed, 7 insertions(+)
 
 diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
-index 6b1d46c1df3b..cd49a76be52a 100644
+index 79e509468161..84dbc5a9959c 100644
 --- a/drivers/tty/serial/8250/8250_port.c
 +++ b/drivers/tty/serial/8250/8250_port.c
 @@ -31,6 +31,7 @@
@@ -35,7 +35,7 @@ index 6b1d46c1df3b..cd49a76be52a 100644
  #include <linux/uaccess.h>
  #include <linux/pm_runtime.h>
  #include <linux/ktime.h>
-@@ -3241,6 +3242,8 @@ void serial8250_console_write(struct uart_8250_port *up, const char *s,
+@@ -3245,6 +3246,8 @@ void serial8250_console_write(struct uart_8250_port *up, const char *s,
  
  	if (port->sysrq || oops_in_progress)
  		locked = 0;

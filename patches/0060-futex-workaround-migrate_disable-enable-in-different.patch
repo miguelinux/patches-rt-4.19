@@ -15,10 +15,10 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 19 insertions(+)
 
 diff --git a/kernel/futex.c b/kernel/futex.c
-index e75ad30aa7bc..5c8053098fc8 100644
+index 920d853a8e9e..32f9e3fa8c46 100644
 --- a/kernel/futex.c
 +++ b/kernel/futex.c
-@@ -2879,6 +2879,14 @@ static int futex_lock_pi(u32 __user *uaddr, unsigned int flags,
+@@ -2896,6 +2896,14 @@ static int futex_lock_pi(u32 __user *uaddr, unsigned int flags,
  	 * before __rt_mutex_start_proxy_lock() is done.
  	 */
  	raw_spin_lock_irq(&q.pi_state->pi_mutex.wait_lock);
@@ -33,7 +33,7 @@ index e75ad30aa7bc..5c8053098fc8 100644
  	spin_unlock(q.lock_ptr);
  	/*
  	 * __rt_mutex_start_proxy_lock() unconditionally enqueues the @rt_waiter
-@@ -2887,6 +2895,7 @@ static int futex_lock_pi(u32 __user *uaddr, unsigned int flags,
+@@ -2904,6 +2912,7 @@ static int futex_lock_pi(u32 __user *uaddr, unsigned int flags,
  	 */
  	ret = __rt_mutex_start_proxy_lock(&q.pi_state->pi_mutex, &rt_waiter, current);
  	raw_spin_unlock_irq(&q.pi_state->pi_mutex.wait_lock);
@@ -41,7 +41,7 @@ index e75ad30aa7bc..5c8053098fc8 100644
  
  	if (ret) {
  		if (ret == 1)
-@@ -3035,11 +3044,21 @@ static int futex_unlock_pi(u32 __user *uaddr, unsigned int flags)
+@@ -3052,11 +3061,21 @@ static int futex_unlock_pi(u32 __user *uaddr, unsigned int flags)
  		 * rt_waiter. Also see the WARN in wake_futex_pi().
  		 */
  		raw_spin_lock_irq(&pi_state->pi_mutex.wait_lock);

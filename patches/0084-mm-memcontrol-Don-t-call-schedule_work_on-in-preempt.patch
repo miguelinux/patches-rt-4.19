@@ -47,10 +47,10 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/mm/memcontrol.c b/mm/memcontrol.c
-index 3a3d109dce21..cf9e81fb342d 100644
+index 3b78b6af353b..1323fa231eed 100644
 --- a/mm/memcontrol.c
 +++ b/mm/memcontrol.c
-@@ -2082,7 +2082,7 @@ static void drain_all_stock(struct mem_cgroup *root_memcg)
+@@ -2084,7 +2084,7 @@ static void drain_all_stock(struct mem_cgroup *root_memcg)
  	 * as well as workers from this path always operate on the local
  	 * per-cpu data. CPU up doesn't touch memcg_stock at all.
  	 */
@@ -59,7 +59,7 @@ index 3a3d109dce21..cf9e81fb342d 100644
  	for_each_online_cpu(cpu) {
  		struct memcg_stock_pcp *stock = &per_cpu(memcg_stock, cpu);
  		struct mem_cgroup *memcg;
-@@ -2102,7 +2102,7 @@ static void drain_all_stock(struct mem_cgroup *root_memcg)
+@@ -2104,7 +2104,7 @@ static void drain_all_stock(struct mem_cgroup *root_memcg)
  		}
  		css_put(&memcg->css);
  	}

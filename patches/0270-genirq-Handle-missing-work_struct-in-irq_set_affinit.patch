@@ -21,7 +21,7 @@ Signed-off-by: Steven Rostedt (VMware) <rostedt@goodmis.org>
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/kernel/irq/manage.c b/kernel/irq/manage.c
-index d5539e04e00a..290cd520dba1 100644
+index 38df7b080083..273e13fe67cc 100644
 --- a/kernel/irq/manage.c
 +++ b/kernel/irq/manage.c
 @@ -411,8 +411,9 @@ irq_set_affinity_notifier(unsigned int irq, struct irq_affinity_notify *notify)

@@ -16,10 +16,10 @@ Signed-off-by: Steven Rostedt (VMware) <rostedt@goodmis.org>
  1 file changed, 2 deletions(-)
 
 diff --git a/kernel/futex.c b/kernel/futex.c
-index 4c448dddce3c..38f53b95e370 100644
+index 084527af43d4..b99266393c52 100644
 --- a/kernel/futex.c
 +++ b/kernel/futex.c
-@@ -921,9 +921,7 @@ void exit_pi_state_list(struct task_struct *curr)
+@@ -938,9 +938,7 @@ void exit_pi_state_list(struct task_struct *curr)
  		if (head->next != next) {
  			/* retain curr->pi_lock for the loop invariant */
  			raw_spin_unlock(&pi_state->pi_mutex.wait_lock);

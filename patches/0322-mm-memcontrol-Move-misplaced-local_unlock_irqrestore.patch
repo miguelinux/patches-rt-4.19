@@ -20,10 +20,10 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/mm/memcontrol.c b/mm/memcontrol.c
-index 421ac74450f6..519528959eef 100644
+index 4156a4e766fb..d059e2a99441 100644
 --- a/mm/memcontrol.c
 +++ b/mm/memcontrol.c
-@@ -6540,10 +6540,10 @@ void mem_cgroup_swapout(struct page *page, swp_entry_t entry)
+@@ -6538,10 +6538,10 @@ void mem_cgroup_swapout(struct page *page, swp_entry_t entry)
  	mem_cgroup_charge_statistics(memcg, page, PageTransHuge(page),
  				     -nr_entries);
  	memcg_check_events(memcg, page);

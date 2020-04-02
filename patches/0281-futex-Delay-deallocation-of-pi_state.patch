@@ -17,10 +17,10 @@ Signed-off-by: Steven Rostedt (VMware) <rostedt@goodmis.org>
  1 file changed, 44 insertions(+), 11 deletions(-)
 
 diff --git a/kernel/futex.c b/kernel/futex.c
-index a9d9283605e5..0b8cff8d9162 100644
+index 8e8658df69d9..3c604e3eb20a 100644
 --- a/kernel/futex.c
 +++ b/kernel/futex.c
-@@ -825,13 +825,13 @@ static void get_pi_state(struct futex_pi_state *pi_state)
+@@ -842,13 +842,13 @@ static void get_pi_state(struct futex_pi_state *pi_state)
   * Drops a reference to the pi_state object and frees or caches it
   * when the last reference is gone.
   */
@@ -37,7 +37,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  
  	/*
  	 * If pi_state->owner is NULL, the owner is most probably dying
-@@ -851,9 +851,7 @@ static void put_pi_state(struct futex_pi_state *pi_state)
+@@ -868,9 +868,7 @@ static void put_pi_state(struct futex_pi_state *pi_state)
  		raw_spin_unlock_irq(&pi_state->pi_mutex.wait_lock);
  	}
  
@@ -48,7 +48,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  		/*
  		 * pi_state->list is already empty.
  		 * clear pi_state->owner.
-@@ -862,6 +860,30 @@ static void put_pi_state(struct futex_pi_state *pi_state)
+@@ -879,6 +877,30 @@ static void put_pi_state(struct futex_pi_state *pi_state)
  		pi_state->owner = NULL;
  		atomic_set(&pi_state->refcount, 1);
  		current->pi_state_cache = pi_state;
@@ -79,7 +79,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  	}
  }
  
-@@ -878,6 +900,7 @@ void exit_pi_state_list(struct task_struct *curr)
+@@ -895,6 +917,7 @@ void exit_pi_state_list(struct task_struct *curr)
  	struct futex_pi_state *pi_state;
  	struct futex_hash_bucket *hb;
  	union futex_key key = FUTEX_KEY_INIT;
@@ -87,7 +87,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  
  	if (!futex_cmpxchg_enabled)
  		return;
-@@ -922,7 +945,7 @@ void exit_pi_state_list(struct task_struct *curr)
+@@ -939,7 +962,7 @@ void exit_pi_state_list(struct task_struct *curr)
  			/* retain curr->pi_lock for the loop invariant */
  			raw_spin_unlock(&pi_state->pi_mutex.wait_lock);
  			raw_spin_unlock(&hb->lock);
@@ -96,7 +96,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  			continue;
  		}
  
-@@ -941,6 +964,8 @@ void exit_pi_state_list(struct task_struct *curr)
+@@ -958,6 +981,8 @@ void exit_pi_state_list(struct task_struct *curr)
  		raw_spin_lock_irq(&curr->pi_lock);
  	}
  	raw_spin_unlock_irq(&curr->pi_lock);
@@ -105,7 +105,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  }
  
  #endif
-@@ -1923,6 +1948,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
+@@ -1940,6 +1965,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
  	struct futex_hash_bucket *hb1, *hb2;
  	struct futex_q *this, *next;
  	DEFINE_WAKE_Q(wake_q);
@@ -113,7 +113,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  
  	if (nr_wake < 0 || nr_requeue < 0)
  		return -EINVAL;
-@@ -2160,7 +2186,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
+@@ -2177,7 +2203,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
  				 * object.
  				 */
  				this->pi_state = NULL;
@@ -122,7 +122,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  				/*
  				 * We stop queueing more waiters and let user
  				 * space deal with the mess.
-@@ -2177,7 +2203,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
+@@ -2194,7 +2220,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
  	 * in futex_proxy_trylock_atomic() or in lookup_pi_state(). We
  	 * need to drop it here again.
  	 */
@@ -131,7 +131,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  
  out_unlock:
  	double_unlock_hb(hb1, hb2);
-@@ -2198,6 +2224,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
+@@ -2215,6 +2241,7 @@ static int futex_requeue(u32 __user *uaddr1, unsigned int flags,
  out_put_key1:
  	put_futex_key(&key1);
  out:
@@ -139,7 +139,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  	return ret ? ret : task_count;
  }
  
-@@ -2334,13 +2361,16 @@ static int unqueue_me(struct futex_q *q)
+@@ -2351,13 +2378,16 @@ static int unqueue_me(struct futex_q *q)
  static void unqueue_me_pi(struct futex_q *q)
  	__releases(q->lock_ptr)
  {
@@ -157,7 +157,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  }
  
  static int fixup_pi_state_owner(u32 __user *uaddr, struct futex_q *q,
-@@ -3289,6 +3319,8 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
+@@ -3306,6 +3336,8 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
  		 * did a lock-steal - fix up the PI-state in that case.
  		 */
  		if (q.pi_state && (q.pi_state->owner != current)) {
@@ -166,7 +166,7 @@ index a9d9283605e5..0b8cff8d9162 100644
  			raw_spin_lock(q.lock_ptr);
  			ret = fixup_pi_state_owner(uaddr2, &q, current);
  			if (ret && rt_mutex_owner(&q.pi_state->pi_mutex) == current) {
-@@ -3299,8 +3331,9 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
+@@ -3316,8 +3348,9 @@ static int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
  			 * Drop the reference to the pi state which
  			 * the requeue_pi() code acquired for us.
  			 */

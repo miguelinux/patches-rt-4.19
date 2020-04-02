@@ -32,7 +32,7 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/tty/sysrq.c b/drivers/tty/sysrq.c
-index 06ed20dd01ba..627517ad55bf 100644
+index cee0274806c5..f785ca55fb85 100644
 --- a/drivers/tty/sysrq.c
 +++ b/drivers/tty/sysrq.c
 @@ -215,7 +215,7 @@ static struct sysrq_key_op sysrq_showlocks_op = {

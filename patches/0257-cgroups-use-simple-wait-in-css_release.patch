@@ -54,10 +54,10 @@ index a01ebb630abc..34fb541e90be 100644
  
  	/*
 diff --git a/kernel/cgroup/cgroup.c b/kernel/cgroup/cgroup.c
-index 08bd40d90066..aceac97f78f4 100644
+index 877ba6dacca8..97ff80283248 100644
 --- a/kernel/cgroup/cgroup.c
 +++ b/kernel/cgroup/cgroup.c
-@@ -4667,10 +4667,10 @@ static void css_free_rwork_fn(struct work_struct *work)
+@@ -4680,10 +4680,10 @@ static void css_free_rwork_fn(struct work_struct *work)
  	}
  }
  
@@ -70,7 +70,7 @@ index 08bd40d90066..aceac97f78f4 100644
  	struct cgroup_subsys *ss = css->ss;
  	struct cgroup *cgrp = css->cgroup;
  
-@@ -4732,8 +4732,8 @@ static void css_release(struct percpu_ref *ref)
+@@ -4745,8 +4745,8 @@ static void css_release(struct percpu_ref *ref)
  	struct cgroup_subsys_state *css =
  		container_of(ref, struct cgroup_subsys_state, refcnt);
  
@@ -81,7 +81,7 @@ index 08bd40d90066..aceac97f78f4 100644
  }
  
  static void init_and_link_css(struct cgroup_subsys_state *css,
-@@ -5459,6 +5459,7 @@ static int __init cgroup_wq_init(void)
+@@ -5472,6 +5472,7 @@ static int __init cgroup_wq_init(void)
  	 */
  	cgroup_destroy_wq = alloc_workqueue("cgroup_destroy", 0, 1);
  	BUG_ON(!cgroup_destroy_wq);

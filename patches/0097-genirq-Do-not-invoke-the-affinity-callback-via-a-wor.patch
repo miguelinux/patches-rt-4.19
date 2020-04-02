@@ -48,7 +48,7 @@ index 315f852b4981..a943c07b54ba 100644
  	void (*release)(struct kref *ref);
  };
 diff --git a/kernel/irq/manage.c b/kernel/irq/manage.c
-index 3c26d0708709..eadcbfbd434a 100644
+index ef4723eb495e..c06baddefca3 100644
 --- a/kernel/irq/manage.c
 +++ b/kernel/irq/manage.c
 @@ -285,7 +285,12 @@ int irq_set_affinity_locked(struct irq_data *data, const struct cpumask *mask,

@@ -68,10 +68,10 @@ index 6ecaf056ab63..d2487df7ae89 100644
  #define IRQ_NO_BALANCING_MASK	(IRQ_PER_CPU | IRQ_NO_BALANCING)
  
 diff --git a/kernel/irq/manage.c b/kernel/irq/manage.c
-index eadcbfbd434a..3858ac895777 100644
+index c06baddefca3..d75e543f813c 100644
 --- a/kernel/irq/manage.c
 +++ b/kernel/irq/manage.c
-@@ -1004,7 +1004,15 @@ irq_forced_thread_fn(struct irq_desc *desc, struct irqaction *action)
+@@ -990,7 +990,15 @@ irq_forced_thread_fn(struct irq_desc *desc, struct irqaction *action)
  		atomic_inc(&desc->threads_handled);
  
  	irq_finalize_oneshot(desc, action);
@@ -88,7 +88,7 @@ index eadcbfbd434a..3858ac895777 100644
  	return ret;
  }
  
-@@ -1514,6 +1522,9 @@ __setup_irq(unsigned int irq, struct irq_desc *desc, struct irqaction *new)
+@@ -1500,6 +1508,9 @@ __setup_irq(unsigned int irq, struct irq_desc *desc, struct irqaction *new)
  			irqd_set(&desc->irq_data, IRQD_NO_BALANCING);
  		}
  

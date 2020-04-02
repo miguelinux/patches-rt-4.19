@@ -13,10 +13,10 @@ Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  1 file changed, 6 insertions(+)
 
 diff --git a/mm/slub.c b/mm/slub.c
-index 224663e20772..cbe47408c6eb 100644
+index 19bc021a2726..181b2cb6ffbb 100644
 --- a/mm/slub.c
 +++ b/mm/slub.c
-@@ -3680,6 +3680,11 @@ static void list_slab_objects(struct kmem_cache *s, struct page *page,
+@@ -3699,6 +3699,11 @@ static void list_slab_objects(struct kmem_cache *s, struct page *page,
  							const char *text)
  {
  #ifdef CONFIG_SLUB_DEBUG
@@ -28,7 +28,7 @@ index 224663e20772..cbe47408c6eb 100644
  	void *addr = page_address(page);
  	void *p;
  	unsigned long *map = kcalloc(BITS_TO_LONGS(page->objects),
-@@ -3701,6 +3706,7 @@ static void list_slab_objects(struct kmem_cache *s, struct page *page,
+@@ -3720,6 +3725,7 @@ static void list_slab_objects(struct kmem_cache *s, struct page *page,
  	slab_unlock(page);
  	kfree(map);
  #endif
